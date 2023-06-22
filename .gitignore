@@ -1,0 +1,5 @@
+venv/
+.ipnb_checkpoints/
+*.json
+*.csv
+*.pkl
