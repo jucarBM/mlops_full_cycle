@@ -1,0 +1,4 @@
+['remote "dataset-track"']
+    url = gs://pe-fesa-gm-gmtm-explore-personal-tests/jbarbaran/mlops_cycle/dataset
+['remote "model-track"']
+    url = gs://pe-fesa-gm-gmtm-explore-personal-tests/jbarbaran/mlops_cycle/model
