@@ -19,7 +19,7 @@ jobs:
           pip install dvc[gs]
           dvc pull model/model.pkl -r model-track
       - name: Set up gcloud SDK
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ env.PROYECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
