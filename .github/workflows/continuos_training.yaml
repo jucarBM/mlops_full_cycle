@@ -2,7 +2,7 @@ name: Continuos Training
 on: 
   push:
     branches:
-      - continuos-training
+      - continuos-training-action
   schedule:
     - cron: '0 */6 * * *'
   workflow_dispatch:
