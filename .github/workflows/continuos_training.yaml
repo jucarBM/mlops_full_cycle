@@ -24,7 +24,7 @@ jobs:
           source venv/bin/activate
           pip install -r src/requirements.txt
           dvc pull model/model.pkl -r model-track
-          dcv unprotect model/model.pkl
+          dvc unprotect model/model.pkl
           dvc repro -f
           echo "Training finished"
           dvc add model/model.pkl -r model-track --to-remote
