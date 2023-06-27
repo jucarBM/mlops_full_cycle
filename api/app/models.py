@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 
-
 class PredictionRequest(BaseModel):
     production_budget: float
     title_year: int

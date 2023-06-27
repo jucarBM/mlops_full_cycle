@@ -5,7 +5,6 @@ import pandas as pd
 import os
 from io import BytesIO
 
-
 def get_model() -> Pipeline:
     model_path = os.environ.get('MODEL_PATH', 'model/model.pkl')
     with open(model_path, "rb") as model_file:
