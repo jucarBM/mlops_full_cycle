@@ -1,0 +1,33 @@
+name: Continuos Integration and Continuos Deployment
+on: [push]
+jobs:
+  ci-cd:
+    runs-on: ubuntu-latest
+    env:
+      REGYSTRY_NAME: ${{ secrets.REGYSTRY_NAME }}
+      PROYECT_ID: ${{ secrets.PROYECT_ID }}
+      REGION: ${{ secrets.REGION }}
+      SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set virtual environment and get model
+        run: |
+          python3 install virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          pip install dvc[gs]
+          dvc pull model/model.pkl -r model-track
+      - name: Set up gcloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ env.PROYECT_ID }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+      - name: Build and push
+        run: |
+          docker build . -t $REGYSTRY_NAME:$GITHUB_SHA
+          gcloud auth configure-docker -q
+          sudo -u $USER docker push $REGYSTRY_NAME:$GITHUB_SHA
+      - name: Deploy to cloudrun
+        run: |
+          gcloud run services update $SERVICE_NAME --image $REGYSTRY_NAME:$GITHUB_SHA --region $REGION
