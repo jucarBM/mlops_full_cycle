@@ -48,8 +48,13 @@ full_movie_data = pd.merge(
     fin_movie_data, opening_gross, on='movie_title', how='left')
 
 full_movie_data = full_movie_data.drop(['gross', 'movie_title'], axis=1)
+columns = ['production_budget', 'worldwide_gross', 'title_year', 'aspect_ratio',
+           'duration', 'budget', 'imdb_score', 'opening_gross', 'screens']
+full_movie_data = full_movie_data[columns]
 print(full_movie_data.columns)
 
+# logger size full_movie_data
+logger.info(f"full_movie_data size: {full_movie_data.shape}")
 # saving data
 logger.info("Saving data to local storage")
 
