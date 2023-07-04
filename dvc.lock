@@ -5,12 +5,12 @@ stages:
     outs:
     - path: dataset/full_data.csv
       hash: md5
-      md5: 3c1163ca719032e78e1e258bcf86b2f7
-      size: 276505
+      md5: 8565e4f9df63ef52523c80a9ae71c58c
+      size: 258406
   training:
     cmd: python src/train.py
     deps:
     - path: dataset/full_data.csv
       hash: md5
-      md5: 3c1163ca719032e78e1e258bcf86b2f7
-      size: 276505
+      md5: 8565e4f9df63ef52523c80a9ae71c58c
+      size: 258406
