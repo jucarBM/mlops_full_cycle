@@ -15,7 +15,7 @@ logging.basicConfig(
     level=logging.INFO,
     datefmt="%H:%M:%S",
     stream=sys.stderr
-    )
+)
 
 logger = logging.getLogger(__name__)
 
@@ -39,14 +39,15 @@ logger.info("Setting Hyperparameter to tune")
 
 param_tuning = {'core_model__n_estimators': range(20, 350, 10)}
 
-grid_search = GridSearchCV(model, param_grid= param_tuning, cv=5, scoring='r2')
+grid_search = GridSearchCV(model, param_grid=param_tuning, cv=5, scoring='r2')
 
 logger.info("Starting grid search ...")
 grid_search.fit(X_train, y_train)
 logger.info("Grid search finished")
 
 logger.info("Cross validating best model ...")
-final_results = cross_validate(grid_search.best_estimator_, X_train, y_train, cv=5, return_train_score=True)
+final_results = cross_validate(
+    grid_search.best_estimator_, X_train, y_train, cv=5, return_train_score=True)
 
 train_score = final_results['train_score'].mean()
 test_score = final_results['test_score'].mean()
@@ -62,7 +63,8 @@ update_model(grid_search.best_estimator_)
 
 logger.info("Generating model report ...")
 validation_score = grid_search.best_estimator_.score(X_test, y_test)
-save_simple_model_report(train_score, test_score, validation_score, grid_search.best_estimator_)
+save_simple_model_report(train_score, test_score,
+                         validation_score, grid_search.best_estimator_)
 
 y_test_pred = grid_search.best_estimator_.predict(X_test)
 
