@@ -21,8 +21,6 @@ def save_simple_model_report(train_score: float, test_score: float, validation_s
         report_file.write(f"### Test score: {test_score}\n")
         report_file.write(f"### Validation score: {validation_score}\n")
 
-        report_file.write("![](./prediction_behavior.png)")
-
 
 def get_model_performance_test_set(y_test: pd.DataFrame, y_test_pred: pd.DataFrame) -> None:
 
