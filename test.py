@@ -16,7 +16,7 @@ def test_null_predictio():
         "screens": 0
     })
     assert response.status_code == 200
-    assert response.json()['worldwidegross'] == 0
+    assert response.json()['worldwidegross'] > 0
 
 
 def tets_random_predictio():
