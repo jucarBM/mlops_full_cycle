@@ -26,9 +26,9 @@ jobs:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
       - name: Build and push
         run: |
-          docker build . -t $REGYSTRY_NAME:$GITHUB_SHA
+          docker build . -t $REGISTRY_NAME:$GITHUB_SHA
           gcloud auth configure-docker -q
-          sudo -u $USER docker push $REGYSTRY_NAME:$GITHUB_SHA
+          sudo -u $USER docker push $REGISTRY_NAME:$GITHUB_SHA
       - name: Deploy to cloudrun
         run: |
-          gcloud run services update $SERVICE_NAME --image $REGYSTRY_NAME:$GITHUB_SHA --region $REGION
+          gcloud run services update $SERVICE_NAME --image $REGISTRY_NAME:$GITHUB_SHA --region $REGION
