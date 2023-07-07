@@ -13,16 +13,17 @@ jobs:
         uses: actions/checkout@v2
       - name: Set virtual environment and get model
         run: |
-          python3 install virtualenv
+          pip3 install virtualenv
           virtualenv venv
           source venv/bin/activate
           pip install dvc[gs]
+          export GOOGLE_APPLICATION_CREDENTIALS=$(python utilities/setter.py)
           dvc pull model/model.pkl -r model-track
       - name: Set up gcloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ env.PROYECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
       - name: Build and push
         run: |
           docker build . -t $REGYSTRY_NAME:$GITHUB_SHA

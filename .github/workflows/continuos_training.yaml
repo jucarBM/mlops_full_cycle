@@ -1,10 +1,5 @@
 name: Continuos Training
-on: 
-  push:
-    branches:
-      - workflow_ci_cd
-  schedule:
-    - cron: '0 */6 * * *'
+on:
   workflow_dispatch:
     inputs:
       reason:
