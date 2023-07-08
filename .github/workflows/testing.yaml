@@ -17,7 +17,7 @@ jobs:
           pip3 install -r requirements_test.txt
       - name: Run tests
         run: |
-          export SERVICE_ACCOUNT_KEY="${{ secrets.SERVICE_ACCOUNT_KEY }}"
+          export SERVICE_ACCOUNT_KEY="${{ secrets.GCP_CREDENTIALS_2 }}"
           export GOOGLE_APPLICATION_CREDENTIALS=$(python utilities/setter.py)
           dvc pull model/model.pkl -r model-track
           pytest test.py

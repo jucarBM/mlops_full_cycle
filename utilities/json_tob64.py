@@ -15,7 +15,8 @@ def json_to_base64(json_data):
     return base64_str
 
 
-path = './pe-fesa-gm-gmtm-explore-dev-c750746c0fad.json'
+#path = './pe-fesa-gm-gmtm-explore-dev-c750746c0fad.json'
+path = './versatile-art-391814-f8de69376fbd.json'
 # open json file
 with open(path) as json_file:
     json_data = json.load(json_file)
